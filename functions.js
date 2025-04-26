@@ -1,7 +1,8 @@
 document.getElementById('runFunctionBtn').addEventListener('click', function() {
-  const promise = Promise.resolve();
   let i = 0;
-
+  
+  // Promise and increment logic
+  const promise = Promise.resolve();
   promise.then(() => {
     i += 1;
     console.log(i);
@@ -12,19 +13,22 @@ document.getElementById('runFunctionBtn').addEventListener('click', function() {
     console.log(i);
   });
 
+  // Handle connection type (if available)
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   if (connection) {
     console.log("Connection type:", connection.effectiveType);
   }
 
-  // Initialize MyNamespace before using it
-  const MyNamespace = {}; // Ensure MyNamespace is defined
+  // Initialize MyNamespace object
+  const MyNamespace = {}; 
   MyNamespace.SubNamespace = {}; 
   MyNamespace.SubNamespace.anotherVariable = 123;
 
+  // Local and session storage handling
   const storage = localStorage;
   sessionStorage.clear();
 
+  // Cookie reading function
   let x = document.cookie;
 
   function getCookie(cname) {
@@ -32,36 +36,31 @@ document.getElementById('runFunctionBtn').addEventListener('click', function() {
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
     for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
+      let c = ca[i].trim();
+      if (c.indexOf(name) === 0) {
         return c.substring(name.length, c.length);
       }
     }
     return "";
   }
 
-  // Define compareObject function, assuming it's a comparison function
+  // Placeholder for compareObject function
   function compareObject() {
-    console.log("Comparing objects...");  // Placeholder function, implement as needed
+    console.log("Comparing objects...");
   }
 
-  // Object prototype valueOf function is a built-in JavaScript function, no need to define it again
-
-  // Define 'required' function (it throws an error)
+  // The 'required' function throws an error
   var required = function() {
     throw new Error("Implement!");
   };
 
-  // Input interface with required methods
+  // Interface for Input-related methods
   var InputInterface = {
     render: required,
     value: required
   };
 
-  // Define Input constructor function
+  // Input constructor function
   function Input() {}
   Input.prototype = Object.create(InputInterface);
 
@@ -69,7 +68,7 @@ document.getElementById('runFunctionBtn').addEventListener('click', function() {
   function Checkbox() {
     this.$el = $("<input/>", { type: "checkbox" });
   }
-
+  
   Checkbox.prototype = Object.create(Input); // Inherit from Input
   Checkbox.prototype.render = function() {
     return this.$el;
@@ -78,61 +77,71 @@ document.getElementById('runFunctionBtn').addEventListener('click', function() {
     return this.$el.prop("checked"); // Override methods
   };
 
-  // Function Overloading Fix (for JavaScript)
+  // Function Overloading Example
   function add(a, b) {
     if (typeof a === 'number' && typeof b === 'number') {
-      return a + b; // If both are numbers
+      return a + b; // Both numbers
     }
     if (typeof a === 'string' && typeof b === 'string') {
-      return a + b; // If both are strings
+      return a + b; // Both strings
     }
     return null; // If types don't match
   }
-  switch (undefined) {
-  case console.log(1):
-  case console.log(2):
-}
-const input = document.createElement('input');
-input.type = 'file';
-input.accept = '.iso';
 
-input.addEventListener('change', (event) => {
-  const selectedFile = event.target.files[0];
-  if (selectedFile) {
-    // Handle the selected ISO file
-    console.log('Selected ISO file:', selectedFile.name);
-  }
-});
+  // Remove the unnecessary switch with console.log
+  console.log(1);
+  console.log(2);
 
-input.click();
-setTimeout(dothis, 5000)
-const wm = new WeakMap();
-const key = {};
-wm.set(key, { key });
-let i = 0;
-let output = '';
+  // Create file input for ISO file selection
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.iso';
 
-do {
+  input.addEventListener('change', (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      // Handle the selected ISO file
+      console.log('Selected ISO file:', selectedFile.name);
+    }
+  });
+
+  input.click();
+
+  // Function call after 5 seconds (dothis function not provided)
+  setTimeout(dothis, 5000);
+
+  // WeakMap usage
+  const wm = new WeakMap();
+  const key = {};
+  wm.set(key, { key });
+
+  // Do-while loop example
+  let output = '';
+  let i = 0;
+  do {
     output += i + ' ';
     i++;
-} while (i < 5);
+  } while (i < 5);
+  console.log(output);
 
-console.log(output);
-const now = new Date();
-const isoString = now.toISOString();
-console.log(isoString); // Output: e.g., "2025-04-26T14:50:00.000Z"
-socketio.sockets.on('connection', function (socket) {
-  socket.on('init', function (config) {
-    var r = createRfbConnection(config, socket);
-    socket.on('mouse', function (evnt) {
-      r.pointerEvent(evnt.x, evnt.y, evnt.button);
-    });
-    socket.on('keyboard', function (evnt) {
-      r.keyEvent(evnt.keyCode, evnt.isDown);
-    });
-    socket.on('disconnect', function () {
-      disconnectClient(socket);
+  // Get current date in ISO format
+  const now = new Date();
+  const isoString = now.toISOString();
+  console.log(isoString); // e.g., "2025-04-26T14:50:00.000Z"
+
+  // Socket.IO connection handling
+  socketio.sockets.on('connection', function(socket) {
+    socket.on('init', function(config) {
+      var r = createRfbConnection(config, socket);
+      socket.on('mouse', function(evnt) {
+        r.pointerEvent(evnt.x, evnt.y, evnt.button);
+      });
+      socket.on('keyboard', function(evnt) {
+        r.keyEvent(evnt.keyCode, evnt.isDown);
+      });
+      socket.on('disconnect', function() {
+        disconnectClient(socket);
+      });
     });
   });
-});
 });
