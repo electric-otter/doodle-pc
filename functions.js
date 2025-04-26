@@ -1,16 +1,14 @@
 document.getElementById('runFunctionBtn').addEventListener('click', function() {
+  // Declare i inside the event listener function
   let i = 0;
-  
-  // Promise and increment logic
-  const promise = Promise.resolve();
-  promise.then(() => {
-    i += 1;
-    console.log(i);
-  });
 
-  promise.then(() => {
+  // Create a new Promise chain to increment and log 'i'
+  Promise.resolve().then(() => {
     i += 1;
-    console.log(i);
+    console.log("First increment:", i);  // Logs after first increment
+  }).then(() => {
+    i += 1;
+    console.log("Second increment:", i); // Logs after second increment
   });
 
   // Handle connection type (if available)
@@ -117,11 +115,11 @@ document.getElementById('runFunctionBtn').addEventListener('click', function() {
 
   // Do-while loop example
   let output = '';
-  let i = 0;
+  let j = 0; // Use a different variable to avoid conflict
   do {
-    output += i + ' ';
-    i++;
-  } while (i < 5);
+    output += j + ' ';
+    j++;
+  } while (j < 5);
   console.log(output);
 
   // Get current date in ISO format
