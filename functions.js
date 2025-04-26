@@ -69,10 +69,15 @@ document.getElementById('runFunctionBtn').addEventListener('click', function() {
     return this.$el.prop("checked"); // override methods
   };
 
-  // Function Overloading
-  function add(a: number, b: number): number;
-  function add(a: string, b: string): string;
-  function add(a: any, b: any): number | string {
-    return a + b;
+  // Function Overloading Fix (for JavaScript)
+  function add(a, b) {
+    if (typeof a === 'number' && typeof b === 'number') {
+      return a + b; // If both are numbers
+    }
+    if (typeof a === 'string' && typeof b === 'string') {
+      return a + b; // If both are strings
+    }
+    return null; // If types don't match
   }
-}); // <-- Fixed the closing parentheses here
+
+});
