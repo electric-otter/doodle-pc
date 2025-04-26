@@ -17,6 +17,9 @@ document.getElementById('runFunctionBtn').addEventListener('click', function() {
     console.log("Connection type:", connection.effectiveType);
   }
 
+  // Initialize MyNamespace before using it
+  const MyNamespace = {}; // Ensure MyNamespace is defined
+
   MyNamespace.SubNamespace = {};
   MyNamespace.SubNamespace.anotherVariable = 123;
 
