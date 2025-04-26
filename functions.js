@@ -106,7 +106,7 @@ document.getElementById('runFunctionBtn').addEventListener('click', function() {
   input.click();
 
   // Function call after 5 seconds (dothis function not provided)
-  setTimeout(dothis, 5000);
+  setTimeout(runFunctionBtn, 5000);
 
   // WeakMap usage
   const wm = new WeakMap();
