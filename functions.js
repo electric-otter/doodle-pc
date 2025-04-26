@@ -88,5 +88,51 @@ document.getElementById('runFunctionBtn').addEventListener('click', function() {
     }
     return null; // If types don't match
   }
+  switch (undefined) {
+  case console.log(1):
+  case console.log(2):
+}
+const input = document.createElement('input');
+input.type = 'file';
+input.accept = '.iso';
 
+input.addEventListener('change', (event) => {
+  const selectedFile = event.target.files[0];
+  if (selectedFile) {
+    // Handle the selected ISO file
+    console.log('Selected ISO file:', selectedFile.name);
+  }
+});
+
+input.click();
+setTimeout(dothis, 5000)
+const wm = new WeakMap();
+const key = {};
+wm.set(key, { key });
+let i = 0;
+let output = '';
+
+do {
+    output += i + ' ';
+    i++;
+} while (i < 5);
+
+console.log(output);
+const now = new Date();
+const isoString = now.toISOString();
+console.log(isoString); // Output: e.g., "2025-04-26T14:50:00.000Z"
+socketio.sockets.on('connection', function (socket) {
+  socket.on('init', function (config) {
+    var r = createRfbConnection(config, socket);
+    socket.on('mouse', function (evnt) {
+      r.pointerEvent(evnt.x, evnt.y, evnt.button);
+    });
+    socket.on('keyboard', function (evnt) {
+      r.keyEvent(evnt.keyCode, evnt.isDown);
+    });
+    socket.on('disconnect', function () {
+      disconnectClient(socket);
+    });
+  });
+});
 });
